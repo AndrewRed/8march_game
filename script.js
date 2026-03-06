@@ -296,13 +296,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function shareCongratulations() {
-        const text = `Я собрала букет из ${flowerCount} цветов и набрала ${score} очков в игре "С 8 Марта"! 🎉💐\n\n${document.querySelector('.congrats-text').textContent}\n\nСыграй и ты: открой игру!`;
+        const text = `Я собрала букет из ${flowerCount} цветов и набрала ${score} очков! 🎉💐\n\n${document.querySelector('.congrats-text').textContent}`;
         
         if (navigator.share) {
             navigator.share({
-                title: 'С 8 Марта!',
-                text: text,
-                url: window.location.href
+                title: 'Поздравление с 8 Марта',
+                text: text
             });
         } else {
             navigator.clipboard.writeText(text).then(() => {
