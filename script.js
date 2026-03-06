@@ -96,7 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
         flower.dataset.type = flowerType.icon;
         
         flower.addEventListener('click', function() {
-            if (this.classList.contains('collected')) return;
+            // Защита от кликов, когда игра уже закончилась,
+            // и от повторной обработки одного и того же цветка.
+            if (!gameActive || this.classList.contains('collected') || !flowers.includes(this)) return;
             
             collectFlower(this);
         });
@@ -113,6 +115,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function collectFlower(flower) {
+        if (!gameActive || !flower || flower.classList.contains('collected') || !flowers.includes(flower)) {
+            return;
+        }
+
         flower.classList.add('collected');
         const points = parseInt(flower.dataset.points);
         
