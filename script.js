@@ -8,9 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const congratulations = document.getElementById('congratulations');
     const gameOver = document.getElementById('game-over');
     const retryBtn = document.getElementById('retry-btn');
-    const shareBtn = document.getElementById('share-btn');
     const heartsContainer = document.getElementById('hearts-container');
     const footerHeart = document.querySelector('footer i.fa-heart');
+    const congratsFlowersElement = document.getElementById('congrats-flowers');
+    const congratsScoreElement = document.getElementById('congrats-score');
 
     let flowerCount = 0;
     let score = 0;
@@ -270,6 +271,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const randomMessage = congratulationsMessages[Math.floor(Math.random() * congratulationsMessages.length)];
         document.querySelector('.congrats-text').textContent = randomMessage;
+        congratsFlowersElement.textContent = flowerCount;
+        congratsScoreElement.textContent = score;
         
         setTimeout(() => {
             congratulations.classList.remove('hidden');
@@ -295,21 +298,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     }
 
-    function shareCongratulations() {
-        const text = `Я собрала букет из ${flowerCount} цветов и набрала ${score} очков! 🎉💐\n\n${document.querySelector('.congrats-text').textContent}`;
-        
-        if (navigator.share) {
-            navigator.share({
-                title: 'Поздравление с 8 Марта',
-                text: text
-            });
-        } else {
-            navigator.clipboard.writeText(text).then(() => {
-                alert('Поздравление скопировано в буфер обмена! Поделись им с друзьями! 💖');
-            });
-        }
-    }
-
     startBtn.addEventListener('click', startGame);
     
     resetBtn.addEventListener('click', function() {
@@ -325,8 +313,6 @@ document.addEventListener('DOMContentLoaded', function() {
         resetGame();
         startGame();
     });
-    
-    shareBtn.addEventListener('click', shareCongratulations);
     
     footerHeart.addEventListener('click', function() {
         for (let i = 0; i < 20; i++) {

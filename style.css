@@ -486,18 +486,6 @@ h1 i {
     transform: translateY(-3px);
 }
 
-.share-btn {
-    background: linear-gradient(135deg, #a5d6a7, #81c784);
-    color: white;
-    margin-top: 20px;
-    display: inline-flex;
-}
-
-.share-btn:hover {
-    background: linear-gradient(135deg, #81c784, #a5d6a7);
-    transform: translateY(-3px);
-}
-
 .congratulations, .game-over {
     position: fixed;
     top: 0;
@@ -574,6 +562,37 @@ h1 i {
     line-height: 1.6;
     color: #ff4081;
     margin: 15px 0;
+}
+
+.congrats-stats {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 20px 0 10px;
+}
+
+.congrats-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 150px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #fff4f8, #ffffff);
+    border: 2px solid #ffccdc;
+}
+
+.congrats-stat-label {
+    font-size: 0.95rem;
+    color: #ff80ab;
+}
+
+.congrats-stat-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff4081;
+    line-height: 1.2;
 }
 
 .flowers-animation {
