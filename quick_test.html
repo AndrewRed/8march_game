@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Быстрый тест игры</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        #game-area { 
+            width: 600px; 
+            height: 400px; 
+            border: 2px solid #ccc; 
+            position: relative;
+            margin: 20px 0;
+            background: #f9f9f9;
+        }
+        .flower {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            position: absolute;
+            background: pink;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        .controls { margin: 10px 0; }
+        button { padding: 10px 20px; margin: 5px; }
+        #output { 
+            margin-top: 20px; 
+            padding: 10px; 
+            background: #f0f0f0; 
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Быстрый тест логики игры</h1>
+    
+    <div class="controls">
+        <button onclick="startTest()">Начать тест</button>
+        <button onclick="createTestFlower()">Создать тестовый цветок</button>
+        <button onclick="testWin()">Тест победы (10 цветов)</button>
+    </div>
+    
+    <div id="game-area"></div>
+    
+    <div>
+        <strong>Статистика:</strong>
+        <div>Цветов собрано: <span id="count">0</span>/10</div>
+        <div>Очки: <span id="score">0</span></div>
+    </div>
+    
+    <div id="output"></div>
+    
+    <script>
+        let flowerCount = 0;
+        let score = 0;
+        const gameArea = document.getElementById('game-area');
+        const output = document.getElementById('output');
+        
+        function log(msg) {
+            output.textContent += msg + '\n';
+            console.log(msg);
+        }
+        
+        function startTest() {
+            log('=== Начинаем тест ===');
+            flowerCount = 0;
+            score = 0;
+            updateDisplay();
+            gameArea.innerHTML = '';
+            log('Игра сброшена');
+        }
+        
+        function createTestFlower() {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.textContent = '🌸';
+            
+            const x = Math.random() * (gameArea.offsetWidth - 60);
+            const y = Math.random() * (gameArea.offsetHeight - 60);
+            
+            flower.style.left = x + 'px';
+            flower.style.top = y + 'px';
+            flower.style.backgroundColor = getRandomColor();
+            
+            flower.addEventListener('click', function() {
+                log('Цветок кликнут!');
+                collectTestFlower(this);
+            });
+            
+            gameArea.appendChild(flower);
+            log(`Создан цветок на позиции (${x.toFixed(0)}, ${y.toFixed(0)})`);
+        }
+        
+        function collectTestFlower(flower) {
+            flower.style.opacity = '0.5';
+            flower.style.transform = 'scale(0.8)';
+            
+            flowerCount++;
+            score += 10;
+            
+            updateDisplay();
+            log(`Собран цветок! Всего: ${flowerCount}, Очки: ${score}`);
+            
+            setTimeout(() => {
+                flower.remove();
+                log('Цветок удален');
+                
+                if (flowerCount >= 10) {
+                    log('🎉 ПОБЕДА! Собрано 10 цветов!');
+                    alert('ПОБЕДА! Собрано 10 цветов!');
+                }
+            }, 500);
+        }
+        
+        function testWin() {
+            log('=== Тест победы ===');
+            flowerCount = 9;
+            score = 90;
+            updateDisplay();
+            log(`Установлено: цветов = ${flowerCount}, очков = ${score}`);
+            
+            // Имитируем сбор последнего цветка
+            flowerCount++;
+            score += 10;
+            updateDisplay();
+            log(`После сбора: цветов = ${flowerCount}, очков = ${score}`);
+            
+            if (flowerCount >= 10) {
+                log('✅ ПОБЕДА ДОСТИГНУТА!');
+                alert('✅ ПОБЕДА ДОСТИГНУТА!');
+            }
+        }
+        
+        function updateDisplay() {
+            document.getElementById('count').textContent = flowerCount;
+            document.getElementById('score').textContent = score;
+        }
+        
+        function getRandomColor() {
+            const colors = ['#ffb3c1', '#ffccd5', '#ffb7c5', '#ffcccb', '#ffcad4'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        log('Тест готов. Нажми "Начать тест", затем создай цветы и кликай по ним.');
+    </script>
+</body>
+</html>

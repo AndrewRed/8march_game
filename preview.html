@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Предпросмотр обновленной игры</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            background: #f9f9f9;
+        }
+        h1 { color: #ff4081; text-align: center; }
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .preview-item {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid #ffccdc;
+        }
+        .preview-title {
+            color: #ff6b8b;
+            border-bottom: 2px solid #ffccdc;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .demo-element {
+            margin: 15px 0;
+            padding: 15px;
+            background: #fff9fb;
+            border-radius: 10px;
+            border: 2px dashed #ffb8d9;
+        }
+        .flower-demo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b8b40, #ff408140);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #ff4081;
+            border: 3px solid #ff4081;
+            margin: 0 auto 10px;
+            position: relative;
+        }
+        .flower-demo::after {
+            content: 'КЛИК!';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #ff4081;
+            background: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            border: 2px solid #ff4081;
+        }
+        .example-flowers {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .example-flower-small {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            border: 2px solid;
+            position: relative;
+        }
+        .example-points-small {
+            font-size: 0.8rem;
+            font-weight: bold;
+            position: absolute;
+            bottom: -18px;
+            background: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            border: 1px solid currentColor;
+        }
+        .start-hint-demo {
+            text-align: center;
+            padding: 20px;
+            background: #ffebee;
+            border-radius: 10px;
+            border: 2px dashed #ffb8d9;
+            margin: 15px 0;
+            position: relative;
+        }
+        .arrow {
+            font-size: 2rem;
+            color: #ff4081;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 1.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+        .btn-demo {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #ff6b8b, #ff4081);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .instruction-list {
+            margin-left: 20px;
+        }
+        .instruction-list li {
+            margin: 10px 0;
+            padding-left: 10px;
+        }
+        .improvement {
+            background: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .improvement h3 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+        .color-box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 8px;
+            vertical-align: middle;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎮 Предпросмотр обновленной игры "С 8 Марта"</h1>
+    
+    <div class="improvement">
+        <h3>✅ Улучшения после вашего замечания:</h3>
+        <p>Добавлены понятные визуальные инструкции, чтобы было сразу ясно, что делать в игре.</p>
+    </div>
+    
+    <div class="preview-container">
+        <div class="preview-item">
+            <h2 class="preview-title">🌸 Визуальный пример цветка</h2>
+            <div class="demo-element">
+                <p><strong>Теперь понятно, на что кликать!</strong></p>
+                <div class="flower-demo">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <p style="text-align: center; margin-top: 30px;">Большой цветок с подписью "КЛИК!"<br>Анимируется и реагирует на нажатие</p>
+            </div>
+            <p>Раньше было просто текст "Кликай на цветочки", теперь есть наглядный пример.</p>
+        </div>
+        
+        <div class="preview-item">
+            <h2 class="preview-title">🎯 Примеры цветов в игре</h2>
+            <div class="demo-element">
+                <p><strong>Разные типы цветов с очками:</strong></p>
+                <div class="example-flowers">
+                    <div class="example-flower-small" style="background-color: #ff6b8b40; color: #ff6b8b; border-color: #ff6b8b;">
+                        <i class="fas fa-spa"></i>
+                        <span class="example-points-small">+10</span>
+                    </div>
+                    <div class="example-flower-small" style="background-color: #81c78440; color: #81c784; border-color: #81c784;">
+                        <i class="fas fa-leaf"></i>
+                        <span class="example-points-small">+15</span>
+                    </div>
+                    <div class="example-flower-small" style="background-color: #ffd54f40; color: #ffd54f; border-color: #ffd54f;">
+                        <i class="fas fa-star"></i>
+                        <span class="example-points-small">+30</span>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 25px;">Показаны разные виды цветов с количеством очков</p>
+            </div>
+            <p>Игрок видит, какие цветы будут появляться и сколько очков они дают.</p>
+        </div>
+    </div>
+    
+    <div class="preview-container">
+        <div class="preview-item">
+            <h2 class="preview-title">🚀 Подсказка для начала игры</h2>
+            <div class="start-hint-demo">
+                <div class="arrow">👇</div>
+                <button class="btn-demo">
+                    <i class="fas fa-play"></i> Начать игру
+                </button>
+                <p style="margin-top: 10px; color: #ff80ab;">Нажми здесь чтобы начать собирать цветы!</p>
+            </div>
+            <p>Мигающая стрелка и текстовая подсказка указывают на кнопку начала игры.</p>
+        </div>
+        
+        <div class="preview-item">
+            <h2 class="preview-title">📋 Пошаговые инструкции</h2>
+            <div class="demo-element">
+                <p><strong>Четкий план действий:</strong></p>
+                <ol class="instruction-list">
+                    <li>Нажми кнопку <strong>"Начать игру"</strong></li>
+                    <li>Кликай на появляющиеся цветы</li>
+                    <li>Собери 10 цветов до истечения времени</li>
+                    <li>Получи поздравление с 8 Марта! 💐</li>
+                </ol>
+            </div>
+            <p>Простая пошаговая инструкция, понятная с первого взгляда.</p>
+        </div>
+    </div>
+    
+    <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin-top: 30px; border-left: 4px solid #2196F3;">
+        <h2 style="color: #1976d2; margin-top: 0;">🎮 Что изменилось в игре:</h2>
+        <ul>
+            <li><span class="color-box" style="background: #ffebee;"></span> <strong>Визуальные примеры</strong> - теперь видно, на что кликать</li>
+            <li><span class="color-box" style="background: #f3e5f5;"></span> <strong>Интерактивные демо-элементы</strong> - можно потренироваться перед игрой</li>
+            <li><span class="color-box" style="background: #e8f5e9;"></span> <strong>Четкие инструкции</strong> - пошаговый план действий</li>
+            <li><span class="color-box" style="background: #fff3e0;"></span> <strong>Подсказки интерфейса</strong> - стрелки и выделения важных элементов</li>
+            <li><span class="color-box" style="background: #e0f2f1;"></span> <strong>Информация о цветах</strong> - виды цветов и их стоимость в очках</li>
+        </ul>
+        <p style="margin-top: 15px; font-style: italic;">Теперь игроку не нужно гадать, что делать - всё показано наглядно!</p>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px; padding: 20px; background: white; border-radius: 10px; border: 2px solid #ff6b8b;">
+        <h3 style="color: #ff4081;">Готово к тестированию! 🎯</h3>
+        <p>Откройте <strong>index.html</strong> в папке игры, чтобы увидеть все улучшения в действии.</p>
+        <p>Игра теперь имеет понятный интерфейс с визуальными подсказками.</p>
+    </div>
+    
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

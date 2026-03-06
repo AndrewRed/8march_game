@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта! 💐</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-heart"></i> С 8 Марта, милые дамы! <i class="fas fa-heart"></i></h1>
+            <p class="subtitle">Собери букет цветов и получи поздравление!</p>
+        </header>
+
+        <div class="game-area">
+            <div class="score-board">
+                <div class="score-item">
+                    <i class="fas fa-flower"></i>
+                    <span>Цветы: <span id="flower-count">0</span>/10</span>
+                </div>
+                <div class="score-item">
+                    <i class="fas fa-star"></i>
+                    <span>Очки: <span id="score">0</span></span>
+                </div>
+                <div class="score-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Время: <span id="timer">60</span>с</span>
+                </div>
+            </div>
+
+            <div class="game-board" id="game-board">
+                <div class="instructions">
+                    <div class="instruction-demo">
+                        <div class="demo-flower">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <div class="demo-text">
+                            <p><strong>Кликай на такие цветочки, чтобы собрать букет!</strong></p>
+                            <p>Каждый цветок даёт очки и исчезает с анимацией</p>
+                        </div>
+                    </div>
+                    <div class="instruction-goal">
+                        <div class="goal-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="goal-text">
+                            <p><strong>Цель:</strong> Собери <span class="goal-number">10</span> цветов за <span class="goal-number">60</span> секунд!</p>
+                            <p class="hint-text">Цветы появляются случайно и исчезают через несколько секунд</p>
+                        </div>
+                    </div>
+                    <div class="instruction-examples">
+                        <p><strong>Примеры цветов, которые будут появляться:</strong></p>
+                        <div class="flower-examples">
+                            <div class="example-flower" style="background-color: #ff6b8b40; color: #ff6b8b; border-color: #ff6b8b;">
+                                <i class="fas fa-spa"></i>
+                                <span class="example-points">+10</span>
+                            </div>
+                            <div class="example-flower" style="background-color: #81c78440; color: #81c784; border-color: #81c784;">
+                                <i class="fas fa-leaf"></i>
+                                <span class="example-points">+15</span>
+                            </div>
+                            <div class="example-flower" style="background-color: #ffd54f40; color: #ffd54f; border-color: #ffd54f;">
+                                <i class="fas fa-star"></i>
+                                <span class="example-points">+30</span>
+                            </div>
+                            <div class="example-flower" style="background-color: #ba68c840; color: #ba68c8; border-color: #ba68c8;">
+                                <i class="far fa-gem"></i>
+                                <span class="example-points">+25</span>
+                            </div>
+                        </div>
+                        <p class="hint-text">Чем реже цветок, тем больше очков он даёт!</p>
+                    </div>
+                    
+                    <div class="instruction-start">
+                        <div class="start-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="start-text">
+                            <p><strong>Как начать:</strong></p>
+                            <ol class="start-steps">
+                                <li>Нажми кнопку <strong>"Начать игру"</strong> ниже</li>
+                                <li>Кликай на появляющиеся цветы</li>
+                                <li>Собери 10 цветов до истечения времени</li>
+                                <li>Получи красивое поздравление с 8 Марта! 💐</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="start-hint">
+                    <div class="hint-arrow">
+                        <i class="fas fa-hand-point-down"></i>
+                    </div>
+                    <button id="start-btn" class="btn start-btn">
+                        <i class="fas fa-play"></i> Начать игру
+                    </button>
+                    <div class="hint-text">Нажми здесь чтобы начать собирать цветы!</div>
+                </div>
+                <button id="reset-btn" class="btn reset-btn" disabled>
+                    <i class="fas fa-redo"></i> Заново
+                </button>
+            </div>
+        </div>
+
+        <div class="congratulations hidden" id="congratulations">
+            <div class="congrats-content">
+                <h2><i class="fas fa-crown"></i> Поздравляем! <i class="fas fa-crown"></i></h2>
+                <div class="message-box">
+                    <p>Ты собрала прекрасный букет! 🌸</p>
+                    <p class="congrats-text">С 8 Марта, прекрасная! Пусть этот день будет наполнен улыбками, теплом и любовью. Ты - самое красивое и нежное создание на свете! 💖</p>
+                    <div class="flowers-animation">
+                        <i class="fas fa-spa flower-1"></i>
+                        <i class="fas fa-spa flower-2"></i>
+                        <i class="fas fa-spa flower-3"></i>
+                        <i class="fas fa-spa flower-4"></i>
+                        <i class="fas fa-spa flower-5"></i>
+                    </div>
+                </div>
+                <button id="share-btn" class="btn share-btn">
+                    <i class="fas fa-share-alt"></i> Поделиться поздравлением
+                </button>
+            </div>
+        </div>
+
+        <div class="game-over hidden" id="game-over">
+            <div class="game-over-content">
+                <h2><i class="fas fa-sad-tear"></i> Время вышло!</h2>
+                <p>Не успела собрать все цветы... Попробуй ещё раз!</p>
+                <button id="retry-btn" class="btn retry-btn">
+                    <i class="fas fa-redo"></i> Попробовать снова
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            <p>Сделано с <i class="fas fa-heart" style="color: #ff6b8b;"></i> к прекрасным женщинам!</p>
+            <p class="hint">💝 Нажми на сердечко для сюрприза!</p>
+        </footer>
+    </div>
+
+    <div class="hearts-container" id="hearts-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

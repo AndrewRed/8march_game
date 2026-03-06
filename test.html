@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тест игры</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .test-btn { 
+            padding: 10px 20px; 
+            margin: 10px; 
+            background: #4CAF50; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Тест логики игры</h1>
+    <button class="test-btn" onclick="testWinCondition()">Тест победы (собрать 10 цветов)</button>
+    <button class="test-btn" onclick="testFlowerClick()">Тест клика по цветку</button>
+    
+    <div id="output" style="margin-top: 20px; padding: 10px; background: #f0f0f0;"></div>
+    
+    <script>
+        // Имитируем глобальные переменные из игры
+        let flowerCount = 0;
+        const totalFlowersNeeded = 10;
+        
+        function log(msg) {
+            document.getElementById('output').innerHTML += msg + '<br>';
+            console.log(msg);
+        }
+        
+        function testWinCondition() {
+            log('=== Тест победы ===');
+            flowerCount = 9;
+            log(`flowerCount = ${flowerCount}`);
+            
+            // Имитируем сбор цветка
+            flowerCount++;
+            log(`После сбора: flowerCount = ${flowerCount}`);
+            
+            if (flowerCount >= totalFlowersNeeded) {
+                log('✅ ПОБЕДА! winGame() должна быть вызвана');
+            } else {
+                log('❌ Еще не победили');
+            }
+        }
+        
+        function testFlowerClick() {
+            log('=== Тест клика ===');
+            const flower = {
+                classList: {
+                    contains: function(cls) { 
+                        log(`Проверка класса: ${cls}`);
+                        return false; 
+                    },
+                    add: function(cls) { log(`Добавлен класс: ${cls}`); }
+                },
+                dataset: { points: '10' }
+            };
+            
+            // Имитируем обработчик клика
+            if (flower.classList.contains('collected')) {
+                log('Цветок уже собран!');
+                return;
+            }
+            
+            log('Собираем цветок...');
+            // collectFlower(flower) должна быть вызвана
+        }
+    </script>
+</body>
+</html>
