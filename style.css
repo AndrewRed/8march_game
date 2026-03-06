@@ -490,6 +490,7 @@ h1 i {
     background: linear-gradient(135deg, #a5d6a7, #81c784);
     color: white;
     margin-top: 20px;
+    display: inline-flex;
 }
 
 .share-btn:hover {
