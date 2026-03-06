@@ -16,6 +16,21 @@
         </header>
 
         <div class="game-area">
+            <div class="controls">
+                <div class="start-hint">
+                    <div class="hint-arrow">
+                        <i class="fas fa-hand-point-down"></i>
+                    </div>
+                    <button id="start-btn" class="btn start-btn">
+                        <i class="fas fa-play"></i> Начать игру
+                    </button>
+                    <div class="hint-text">Нажми здесь чтобы начать собирать цветы!</div>
+                </div>
+                <button id="reset-btn" class="btn reset-btn" disabled>
+                    <i class="fas fa-redo"></i> Заново
+                </button>
+            </div>
+
             <div class="score-board">
                 <div class="score-item">
                     <i class="fas fa-flower"></i>
@@ -81,7 +96,7 @@
                         <div class="start-text">
                             <p><strong>Как начать:</strong></p>
                             <ol class="start-steps">
-                                <li>Нажми кнопку <strong>"Начать игру"</strong> ниже</li>
+                                <li>Нажми кнопку <strong>"Начать игру"</strong> сверху</li>
                                 <li>Кликай на появляющиеся цветы</li>
                                 <li>Собери 10 цветов до истечения времени</li>
                                 <li>Получи красивое поздравление с 8 Марта! 💐</li>
@@ -91,25 +106,11 @@
                 </div>
             </div>
 
-            <div class="controls">
-                <div class="start-hint">
-                    <div class="hint-arrow">
-                        <i class="fas fa-hand-point-down"></i>
-                    </div>
-                    <button id="start-btn" class="btn start-btn">
-                        <i class="fas fa-play"></i> Начать игру
-                    </button>
-                    <div class="hint-text">Нажми здесь чтобы начать собирать цветы!</div>
-                </div>
-                <button id="reset-btn" class="btn reset-btn" disabled>
-                    <i class="fas fa-redo"></i> Заново
-                </button>
-            </div>
         </div>
 
         <div class="congratulations hidden" id="congratulations">
             <div class="congrats-content">
-                <h2><i class="fas fa-crown"></i> Поздравляем! <i class="fas fa-crown"></i></h2>
+                <h2 class="congrats-title"><i class="fas fa-crown"></i><span>Поздравляем!</span><i class="fas fa-crown"></i></h2>
                 <div class="message-box">
                     <p>Ты собрала прекрасный букет! 🌸</p>
                     <p class="congrats-text">С 8 Марта, прекрасная! Пусть этот день будет наполнен улыбками, теплом и любовью. Ты - самое красивое и нежное создание на свете! 💖</p>

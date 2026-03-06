@@ -397,6 +397,7 @@ h1 i {
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    margin-bottom: 25px;
 }
 
 .start-hint {
@@ -405,6 +406,7 @@ h1 i {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    transition: opacity 0.3s ease;
 }
 
 .hint-arrow {
@@ -448,6 +450,10 @@ h1 i {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+.start-btn {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 .btn i {
     font-size: 1.3rem;
 }
@@ -466,9 +472,16 @@ h1 i {
 .reset-btn, .retry-btn {
     background: linear-gradient(135deg, #81d4fa, #4fc3f7);
     color: white;
+    transition: all 0.3s ease;
 }
 
-.reset-btn:hover, .retry-btn:hover {
+.reset-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: scale(0.95);
+}
+
+.reset-btn:not(:disabled):hover, .retry-btn:hover {
     background: linear-gradient(135deg, #4fc3f7, #81d4fa);
     transform: translateY(-3px);
 }
@@ -528,6 +541,22 @@ h1 i {
 
 .congrats-content h2 i, .game-over-content h2 i {
     margin: 0 15px;
+}
+
+.congrats-title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.congrats-title i {
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.congrats-title span {
+    white-space: nowrap;
 }
 
 .message-box {

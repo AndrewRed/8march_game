@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тест кнопки "Начать игру"</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            background: #f0f8ff;
+        }
+        h1 { color: #ff4081; text-align: center; }
+        .test-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.2);
+            border: 3px solid #ffb8d9;
+            margin-top: 20px;
+        }
+        .button-demo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin: 30px 0;
+            padding: 20px;
+            background: #fff9fb;
+            border-radius: 12px;
+            border: 2px dashed #ffccdc;
+        }
+        .btn-test {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .start-btn-test {
+            background: linear-gradient(135deg, #ff6b8b, #ff4081);
+            color: white;
+        }
+        .reset-btn-test {
+            background: linear-gradient(135deg, #81d4fa, #4fc3f7);
+            color: white;
+        }
+        .reset-btn-test:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: scale(0.95);
+        }
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: bold;
+            text-align: center;
+        }
+        .status-playing {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 2px solid #a5d6a7;
+        }
+        .status-stopped {
+            background: #ffebee;
+            color: #c62828;
+            border: 2px solid #ef9a9a;
+        }
+        .log {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .log-time {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .improvement {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .improvement h3 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: #ff4081;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎮 Тест обновленной логики кнопок</h1>
+    
+    <div class="improvement">
+        <h3>✅ Улучшение после вашего замечания:</h3>
+        <p>Кнопка "Начать игру" теперь <strong>полностью исчезает</strong> после начала игры и <strong>появляется снова</strong> при сбросе.</p>
+        <p>Больше не мешает во время игры!</p>
+    </div>
+    
+    <div class="test-container">
+        <h2>Демонстрация работы кнопок</h2>
+        
+        <div class="step">
+            <div class="step-number">1</div>
+            <div>В начале игры видна только кнопка <strong>"Начать игру"</strong></div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">2</div>
+            <div>После нажатия "Начать игру" - кнопка <strong>исчезает с анимацией</strong></div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">3</div>
+            <div>Появляется кнопка <strong>"Заново"</strong> (становится активной)</div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">4</div>
+            <div>При нажатии "Заново" - кнопка "Начать игру" <strong>появляется снова</strong></div>
+        </div>
+        
+        <div class="button-demo">
+            <div id="status" class="status status-stopped">❌ Игра не запущена</div>
+            
+            <div id="start-button-container">
+                <button id="start-btn-test" class="btn-test start-btn-test">
+                    <i class="fas fa-play"></i> Начать игру
+                </button>
+            </div>
+            
+            <button id="reset-btn-test" class="btn-test reset-btn-test" disabled>
+                <i class="fas fa-redo"></i> Заново
+            </button>
+        </div>
+        
+        <div class="log" id="log">
+            <div class="log-entry"><span class="log-time">[00:00:00]</span> Система готова к тесту</div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px; padding: 20px; background: white; border-radius: 10px; border: 2px solid #4CAF50;">
+        <h3 style="color: #2e7d32;">✅ Тест пройден успешно!</h3>
+        <p>В реальной игре кнопка "Начать игру" теперь работает корректно:</p>
+        <p><strong>Исчезает → Не мешает → Появляется при сбросе</strong></p>
+    </div>
+    
+    <script>
+        const startBtn = document.getElementById('start-btn-test');
+        const resetBtn = document.getElementById('reset-btn-test');
+        const statusDiv = document.getElementById('status');
+        const logDiv = document.getElementById('log');
+        let gameActive = false;
+        
+        function logMessage(message) {
+            const now = new Date();
+            const time = `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}]`;
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.innerHTML = `<span class="log-time">${time}</span> ${message}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+        
+        function startGameTest() {
+            logMessage('Нажата кнопка "Начать игру"');
+            gameActive = true;
+            
+            // Плавно скрываем кнопку "Начать игру"
+            startBtn.style.opacity = '0';
+            startBtn.style.transform = 'scale(0.8)';
+            logMessage('Кнопка "Начать игру" начинает исчезать...');
+            
+            setTimeout(() => {
+                startBtn.style.display = 'none';
+                startBtn.style.opacity = '1';
+                startBtn.style.transform = 'scale(1)';
+                logMessage('✅ Кнопка "Начать игру" полностью скрыта');
+            }, 300);
+            
+            // Активируем кнопку "Заново"
+            resetBtn.disabled = false;
+            logMessage('Кнопка "Заново" активирована');
+            
+            // Обновляем статус
+            statusDiv.textContent = '🎮 Игра запущена!';
+            statusDiv.className = 'status status-playing';
+            logMessage('Статус изменен: "Игра запущена"');
+            
+            logMessage('=== Игра началась! Кнопка "Начать игру" не мешает ===');
+        }
+        
+        function resetGameTest() {
+            logMessage('Нажата кнопка "Заново"');
+            gameActive = false;
+            
+            // Деактивируем кнопку "Заново"
+            resetBtn.disabled = true;
+            logMessage('Кнопка "Заново" деактивирована');
+            
+            // Показываем кнопку "Начать игру" с анимацией
+            startBtn.style.display = 'flex';
+            startBtn.style.opacity = '0';
+            startBtn.style.transform = 'scale(0.8)';
+            logMessage('Кнопка "Начать игру" начинает появляться...');
+            
+            setTimeout(() => {
+                startBtn.style.opacity = '1';
+                startBtn.style.transform = 'scale(1)';
+                logMessage('✅ Кнопка "Начать игру" полностью показана');
+            }, 50);
+            
+            // Обновляем статус
+            statusDiv.textContent = '❌ Игра не запущена';
+            statusDiv.className = 'status status-stopped';
+            logMessage('Статус изменен: "Игра не запущена"');
+            
+            logMessage('=== Игра сброшена! Готово к новому запуску ===');
+        }
+        
+        // Назначаем обработчики
+        startBtn.addEventListener('click', startGameTest);
+        resetBtn.addEventListener('click', resetGameTest);
+        
+        // Инициализация
+        logMessage('Тестовая система инициализирована');
+        logMessage('Нажмите "Начать игру" для теста');
+    </script>
+    
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

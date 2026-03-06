@@ -155,8 +155,27 @@ document.addEventListener('DOMContentLoaded', function() {
     function startGame() {
         resetGame();
         gameActive = true;
-        startBtn.disabled = true;
+        
+        // Плавно скрываем кнопку "Начать игру"
+        startBtn.style.opacity = '0';
+        startBtn.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+            startBtn.style.display = 'none';
+            startBtn.style.opacity = '1';
+            startBtn.style.transform = 'scale(1)';
+        }, 300);
+        
         resetBtn.disabled = false;
+        
+        // Скрываем подсказку со стрелкой
+        const startHint = document.querySelector('.start-hint');
+        if (startHint) {
+            startHint.style.opacity = '0';
+            setTimeout(() => {
+                startHint.style.display = 'none';
+                startHint.style.opacity = '1';
+            }, 300);
+        }
         
         timerInterval = setInterval(() => {
             timeLeft--;
@@ -207,6 +226,27 @@ document.addEventListener('DOMContentLoaded', function() {
         flowers = [];
         
         document.querySelector('.instructions').classList.remove('hidden');
+        
+        // Показываем кнопку "Начать игру" снова с анимацией
+        startBtn.style.display = 'flex';
+        startBtn.style.opacity = '0';
+        startBtn.style.transform = 'scale(0.8)';
+        startBtn.disabled = false;
+        
+        setTimeout(() => {
+            startBtn.style.opacity = '1';
+            startBtn.style.transform = 'scale(1)';
+        }, 50);
+        
+        // Показываем подсказку со стрелкой
+        const startHint = document.querySelector('.start-hint');
+        if (startHint) {
+            startHint.style.display = 'flex';
+            startHint.style.opacity = '0';
+            setTimeout(() => {
+                startHint.style.opacity = '1';
+            }, 50);
+        }
         
         congratulations.classList.remove('show');
         congratulations.classList.add('hidden');
@@ -277,6 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
     retryBtn.addEventListener('click', function() {
         gameOver.classList.remove('show');
         gameOver.classList.add('hidden');
+        resetGame();
         startGame();
     });
     
